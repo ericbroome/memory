@@ -1,0 +1,180 @@
+
+
+/* 
+We put some reusable styles in :root so that we can be consistent without searching and replacing 
+colors and settings throughout the css document.
+*/
+:root {
+  --light-blue-to-bottom: linear-gradient(to bottom, rgb(172, 223, 236), rgb(151, 240, 243));
+}
+/*We only do this to force (r)em units to scale by 10 rather than 16 */
+html {
+  font-size: 10px;  /* Now one rem is 10px */
+}
+
+/* Everything defaults to these default settings. */
+* {
+  font-size: 1rem;  /* Now em units will equal rem units */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header contains a logo or brand as well as tools and runtime info */
+#header {
+  font-family: 'Roboto';
+  font-size: 2em;
+  height:4em;
+  width: 100%;
+  padding: 0.8em;
+  background: linear-gradient(to bottom, rgba(127, 127, 127, 1), rgba(0, 0, 0, 0));
+  display: flex;
+  flex-direction: row;
+  border-radius: 0 0 1em 1em;
+  align-items:center; /*Since main axis is x then this aligns vertically */
+}
+
+/* Header contains a logo or brand as well as tools and runtime info */
+#header > h1 {
+  font-size: 2em;
+}
+
+/* Header contains a logo or brand as well as tools and runtime info */
+#header > div {
+  font-size: 1em;
+}
+
+/* Timer */
+#header > timer {
+  font-family: 'Open24';
+  font-size: 1em;
+}
+
+#newGame {
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  right: 0px;
+  min-height: 3em;
+  min-width: 10em;
+  width: 10em;
+  justify-content: center;
+  align-items: center;
+  background: lightseagreen;
+  border: .1em solid rgba(0, 0, 0, 0.5);
+  border-radius: 1em;
+  text-align: center;
+  cursor: pointer;
+}
+
+#newGame > div {
+  font-size: 1em;
+  
+  margin: 0.25em;
+}
+
+/*
+The splash is the "home" screen which is displayed when user first visits page and can be brought up
+again by clicking the home/logo/brand on the header or by closing the results element.
+*/
+#splash {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  padding: 2rem;
+  background: var(--light-blue-to-bottom);
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+
+#splash > p {
+  display: flex;
+  flex-direction: row;
+  padding: 4rem;
+  font-size: 2rem;
+}
+
+#splash > #last {
+}
+
+.gameHistory {
+  width: 30%;
+  font: 16px 'Roboto';
+  border: 1px solid black;
+  border-radius: 2em;
+  padding: 8px;
+  margin: 8px;
+  box-shadow: 0.1rem 0.1rem 0.5rem 0.01rem grey, 
+    inset 0px 0px 50px 10px rgba(195, 232, 245, 0.45);
+}
+/*
+Results object contains detailed information about the last game played.
+*/
+#results {
+  width: 100%;
+  height: 100%;
+  border-radius: 4rem;
+  padding: 1rem;
+  background: var(--light-blue-to-bottom);
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+}
+
+#results > div {
+  color: red;
+}
+
+/*
+Everything goes in the content element except the header. 
+The three contained objects are: Splash, Game and Results.
+*/
+#content {
+  width: 910px;
+  min-height: 800px;
+  display: inline-flexbox;
+}
+
+
+
+#game {
+  width: 100%;
+  height: 100%;
+}
+#game .row {
+  display: flex;
+  min-height: 1rem;
+}
+.card {
+  position: relative;
+  z-index: 2;
+  align-items:center; 
+  text-align:center;
+  justify-content: center;
+  border: 1px solid black;
+  overflow: visible;
+  width: 10rem;
+  height: 15rem;
+  margin: 0.5rem;
+  display: inline-flex;
+  flex-direction: row;
+  border-radius: 1rem;
+  font-size: 6rem;
+  box-shadow: 0.1rem 0.1rem 0.5rem 0.01rem grey, 
+    inset 0px 0px 50px 10px rgba(195, 232, 245, 0.45);
+}
+
+.cardUp {
+  color: black;
+}
+
+.cardDown {
+  color: transparent;
+}
+
+.cardMatched {
+  border-style: 1px solid;
+  border-color: greenyellow;
+}
