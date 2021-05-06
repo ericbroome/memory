@@ -3,16 +3,58 @@
 /* 
 We put some reusable styles in :root so that we can be consistent without searching and replacing 
 colors and settings throughout the css document.
+This also allows the possibility of user customizable themes, if we add such functionality.
 */
 :root {
-  --light-blue-to-bottom: linear-gradient(to bottom, rgb(172, 223, 236), rgb(151, 240, 243));
-}
-/*We only do this to force (r)em units to scale by 10 rather than 16 */
-html {
-  font-size: 10px;  /* Now one rem is 10px */
+  --base-unit-pixels-10: 10px;
+  --min-width-html: 100rem;
+  --min-height-html: 80rem;
+  --button-color: lightseagreen;
+  --header-text-color:  rgb(151, 240, 243);
+  --header-text-shadow-color: rgba(172, 223, 236, 0.5);
+  --ivory-grey-to-top: linear-gradient(
+    to top,
+    ivory,
+    rgba(0, 0, 0, 1));
+  --light-blue-to-bottom: linear-gradient(
+    to bottom, 
+    rgb(172, 223, 236), 
+    rgb(151, 240, 243));
+  --header-background: linear-gradient(
+    to bottom, 
+    rgba(127, 127, 127, 1), 
+    rgba(0, 0, 0, 0));
+  --shadow: 0.1rem 0.1rem 0.5rem 0.01rem grey, 
+    inset 0px 0px 50px 10px rgba(195, 232, 245, 0.45);
+  --shadow-up: 0.2rem 0.2rem 0.5rem 0.02rem grey, 
+    inset 0px 0px 50px 10px rgba(195, 232, 245, 0.45);
+  --shadow-down: -0.1rem -0.1rem 0.5rem 0.01rem grey, 
+    inset 0px 0px 50px 10px rgba(195, 232, 245, 0.45);
+  --border-up-valid: 1px green;
+  --border-up-invalid: 1px red;
+
 }
 
-/* Everything defaults to these default settings. */
+/* We only do this to force em units to scale by multiples of 10 rather than 16 (the default) */
+html {
+  width: 100%;
+  height: 100%;
+  font-size: var(--base-unit-pixels-10);  /* Now one (r)em is easy to define globally */
+}
+
+body {
+  font-size: 1rem;
+  min-width: 5.5rem;
+  background: var(--ivory-grey-to-top);
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 8rem auto;
+  align-content: center;
+  justify-content: center;
+}
+
+/* Everything defaults to these settings. */
 * {
   font-size: 1rem;  /* Now em units will equal rem units */
   margin: 0;
@@ -21,97 +63,157 @@ html {
 }
 
 /* Header contains a logo or brand as well as tools and runtime info */
-#header {
-  font-family: 'Roboto';
-  font-size: 2em;
-  height:4em;
-  width: 100%;
-  padding: 0.8em;
-  background: linear-gradient(to bottom, rgba(127, 127, 127, 1), rgba(0, 0, 0, 0));
-  display: flex;
-  flex-direction: row;
+.header {
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 8em 28em auto 26em;
+  grid-template-rows: 8em;
+  justify-items: center;
+  align-items: center;
   border-radius: 0 0 1em 1em;
-  align-items:center; /*Since main axis is x then this aligns vertically */
+  width: 100%;
+  height: 8em;
+  margin: 0px;
+  padding: 0px;
+  background: var(--header-background);
+  color: ivory;
 }
 
 /* Header contains a logo or brand as well as tools and runtime info */
-#header > h1 {
-  font-size: 2em;
-}
 
-/* Header contains a logo or brand as well as tools and runtime info */
-#header > div {
-  font-size: 1em;
+.header > .brand {
+  font-size: 8em;
+  color: var(--header-text-color);
+  grid-row: 1;
+  grid-column: 1;
+  width: 3em;
+  height: 3em;
+  margin-left: 3em;
+  margin-top: 1.75em;
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
+  text-shadow: 2px 2px 2px var(--header-text-shadow-color);
+}
+.header > .home {
+  font-size: 5em;
+  color: var(--header-text-color);
+  grid-row: 1;
+  grid-column: 2;
+  width: 11em;
+  margin-left: 8px;
+  justify-self: left;
+  cursor: pointer;
+  font-family: 'Londrina Outline', cursive;
+  text-shadow: 2px 2px 2px var(--header-text-shadow-color);
 }
 
 /* Timer */
-#header > timer {
-  font-family: 'Open24';
-  font-size: 1em;
+.header > .timer {
+  grid-row: 1;
+  grid-column: 3;
+  color: var(--header-text-color);
+  font-size: 5em;
+  margin: 8px;
+  font-family: 'Londrina Outline', cursive;
+  text-shadow: 2px 2px 2px var(--header-text-shadow-color);
 }
 
-#newGame {
-  font-size: 1em;
-  display: flex;
-  flex-direction: column;
-  right: 0px;
-  min-height: 3em;
+.header > .new-game-button {
+  font-family:Arial, Helvetica, sans-serif;
+  color:rgb(201, 22, 22);
+  grid-row: 1;
+  grid-column: 4;
+  grid-template-rows: 2;
+  grid-template-columns: 1;
+  align-self: right;
+  margin-right: 64px;;
+  font-size: 3em;
+  display: grid;
+  min-height: 2.5em;
+  max-height: 2.5em;
+  height: 3em;
   min-width: 10em;
   width: 10em;
-  justify-content: center;
-  align-items: center;
-  background: lightseagreen;
+  background: var(--light-blue-to-bottom);
   border: .1em solid rgba(0, 0, 0, 0.5);
-  border-radius: 1em;
+  border-radius: 0.5em;
   text-align: center;
   cursor: pointer;
+  box-shadow: var(--shadow);
 }
 
-#newGame > div {
+.new-game-button > #new-game-button-label {
+  font-size: 1.0em;
+  margin: 0.05em;
+}
+
+.newGameButton > #gameOptionsDiv {
   font-size: 1em;
-  
-  margin: 0.25em;
+  display: grid;
+  grid-template-rows: 1;
+  grid-template-columns: 4;
 }
 
+.new-game-button > #gameOptionsDiv > label {
+  font-size: 2em;
+  margin: 0.05em;
+}
+
+#pairsSelect {
+  font-size: 1.5em;
+  margin: 0.5em;
+}
 /*
 The splash is the "home" screen which is displayed when user first visits page and can be brought up
 again by clicking the home/logo/brand on the header or by closing the results element.
 */
 #splash {
+  font-size: 2rem;
+  min-width: 5.5rem;
   width: 100%;
   height: 100%;
   border-radius: 1rem;
   padding: 2rem;
   background: var(--light-blue-to-bottom);
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 75% auto;
+  grid-template-rows: 100%;
   align-items:center;
 }
 
-#splash > p {
-  display: flex;
-  flex-direction: row;
-  padding: 4rem;
+.explain {
   font-size: 2rem;
+  color: red;
 }
 
-#splash > #last {
-}
 
 .gameHistory {
-  width: 30%;
-  font: 16px 'Roboto';
+  width: 100%;
+  font-size: 1em;
   border: 1px solid black;
-  border-radius: 2em;
+  border-radius: 1rem;
   padding: 8px;
   margin: 8px;
   box-shadow: 0.1rem 0.1rem 0.5rem 0.01rem grey, 
     inset 0px 0px 50px 10px rgba(195, 232, 245, 0.45);
 }
+
+.historyItems {
+  font-size: 1em;
+  color: blue;
+}
+
+.historyItems > div {
+  font-size: inherit;
+}
+
 /*
 Results object contains detailed information about the last game played.
 */
 #results {
+  font-size: 2em;
+  min-width: 5.5rem;
   width: 100%;
   height: 100%;
   border-radius: 4rem;
@@ -124,7 +226,8 @@ Results object contains detailed information about the last game played.
 }
 
 #results > div {
-  color: red;
+  color: black;
+  font-size: 1.5em;
 }
 
 /*
@@ -132,40 +235,47 @@ Everything goes in the content element except the header.
 The three contained objects are: Splash, Game and Results.
 */
 #content {
-  width: 910px;
+  position: relative;
+  border-radius: 1rem;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.5rem;
+  width: 110rem;
   min-height: 800px;
-  display: inline-flexbox;
 }
 
 
 
 #game {
+  display: grid;
+  grid-template-columns: repeat(10, 10rem);
+  grid-template-rows: repeat(4, 15rem);
+  gap: 1rem;
+  min-width: 5.5rem;
   width: 100%;
   height: 100%;
 }
-#game .row {
-  display: flex;
-  min-height: 1rem;
-}
+
 .card {
-  position: relative;
   z-index: 2;
-  align-items:center; 
   text-align:center;
   justify-content: center;
   border: 1px solid black;
   overflow: visible;
   width: 10rem;
   height: 15rem;
-  margin: 0.5rem;
-  display: inline-flex;
-  flex-direction: row;
   border-radius: 1rem;
   font-size: 6rem;
-  box-shadow: 0.1rem 0.1rem 0.5rem 0.01rem grey, 
-    inset 0px 0px 50px 10px rgba(195, 232, 245, 0.45);
+  box-shadow: var(--shadow);
+  background-color: ivory;
 }
 
+.card:hover {
+  box-shadow: var(--shadow-up);
+  border: 2px solid green;
+}
 .cardUp {
   color: black;
 }

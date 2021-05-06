@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <title>Memory Game Assignment for SpringBoard by Eric Broome (www.ericbroome.com)</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header id="header">
-      <h1 id="home">Memory Game!</h1>
-      <div id="newGame">
-        <div>New Game</div>
+    <div id="header" class="header">
+      <div class="brand">&#8962;</div>
+      <h1 id="home" class="home">Memory Game!</h1>
+      <div id="timer" class="timer">00:00:00</div>
+      <div id="newGame" class="new-game-button">
+        <div id="new-game-button-label">New Game</div>
         <div id="gameOptionsDiv">
           <label for="emojis">Emojis?</label>
           <input type="checkbox" id = "emojis" name="emojis" checked>
@@ -20,27 +24,27 @@
             <option value="15">15</option>
             <option value="20">20</option>
           </select>
+          </div>
         </div>
-        </div>
-  </header>
-    <div id="content">
+      </div>
+  <div id="content">
       <div id="splash">
-        <div id="explain">
+        <div id="explain" class="explain">
           Select a card to reveal it's value. Select another card and hope it matches.<br/>
           If the cards do not match both cards will hide their values. Remember those values!<br/>
           If you manage to match two cards those cards will remain revealed. You cannot click them again.<br/>
           Continue to select cards, remembering each card and ultimately winning by matching every pair of cards.<br/>
         </div>
-        <div id="historyBlock">Game History
+        <div id="historyBlock" class="gameHistory">Game History
           <a href="javascript:DOMManager.clearHistory()">Clear</a>
-          <div id="historyItems"></div>
+          <div id="historyItems" class="historyItems"></div>
         </div>
       </div>
       <div id="results">
         <p>
           Your score is determined by the stats below. 
         </p>
-        <div id="resultsStats"></div>
+        <div id="resultsStats" class="explain"></div>
       </div>
       <div id="game">
       </div>
