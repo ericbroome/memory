@@ -18,7 +18,7 @@ const DOMManager = {
   elHistoryItems : document.querySelector("#historyItems"),
   elResults : document.querySelector("#results"),
   elResultsStats : document.querySelector("#resultsStats"),
-  elNewGameButton : document.querySelector("#newGame"),
+  elNewGameButton : document.querySelector("#newGameButton"),
   elTimer : document.querySelector("#timer"),
   elGameOptionsDiv : document.querySelector("#gameOptionsDiv"),
   elEmojis : document.querySelector("#emojis"),
@@ -501,6 +501,7 @@ const Game = {
       result.push(gameLogData);
     }
     Game.gameLog = result[index];
+    return result;
   },
 
   save : function(gameLogData = null) {
